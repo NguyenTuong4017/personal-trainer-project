@@ -10,11 +10,12 @@ export function TrainingsList() {
     { field: "date", headerName: "Date", width: 300 },
     { field: "duration", headerName: "Duration", width: 150 },
     { field: "activity", headerName: "Activity", width: 200 },
+    { field: "customer", headerName: "Customer", width: 250 },
   ];
 
   const handleFetch = () => {
     fetchTrainings()
-      .then((data) => setTrainings(data._embedded.trainings))
+      .then((data) => setTrainings(data))
       .catch((error) => console.error("Fetch error: ", error));
   };
 
@@ -23,11 +24,12 @@ export function TrainingsList() {
   }, []);
 
   useEffect(() => {
-    const transformedData = trainings.map((training, index) => ({
-      id: index,
+    const transformedData = trainings.map((training) => ({
+      id: training.id,
       date: dayjs(training.date).format("MMMM D, YYYY h:mm A"),
       duration: `${training.duration} minutes`,
       activity: training.activity,
+      customer: `${training.customer.firstname} ${training.customer.lastname}`,
     }));
     setRows(transformedData);
   }, [trainings]);
