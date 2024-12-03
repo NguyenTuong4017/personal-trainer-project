@@ -9,6 +9,7 @@ import { CustomerAddingForm } from "./Components/Add-Form/CustomerAddingForm";
 import { TrainingsList } from "./Components/Content/TrainingsList";
 import TrainingAddingForm from "./Components/Add-Form/TrainingAddingForm";
 import CustomerCalendar from "./Components/Content/CustomerCalander";
+import TrainingChart from "./Components/Content/TrainingChart";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         { path: "add-customer", element: <CustomerAddingForm /> },
         { path: "add-training", element: <TrainingAddingForm /> },
         { path: "calendar", element: <CustomerCalendar /> },
+        { path: "chart", element: <TrainingChart /> },
         { index: true, element: <CustomersList /> },
       ],
     },

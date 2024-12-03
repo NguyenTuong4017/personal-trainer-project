@@ -6,6 +6,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import TodayIcon from "@mui/icons-material/Today";
 import { Link } from "react-router-dom";
 //page list hold the navigation of all pages
@@ -72,6 +73,18 @@ export default function PageList({ setOpen }) {
             <TodayIcon />
           </ListItemIcon>
           <ListItemText primary="Calendar" />
+        </ListItemButton>
+
+        {/* chart page */}
+        <ListItemButton
+          component={Link}
+          to="/chart"
+          onClick={() => setOpen(false)}
+        >
+          <ListItemIcon>
+            <BarChartIcon />
+          </ListItemIcon>
+          <ListItemText primary="Chart" />
         </ListItemButton>
       </List>
     </>
