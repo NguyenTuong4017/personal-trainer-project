@@ -11,22 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SideDrawer from "./SideDrawer";
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
+//styling the navbar
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
@@ -53,7 +38,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
+//create dark theme
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -62,7 +47,7 @@ const darkTheme = createTheme({
     },
   },
 });
-
+//create a navbar
 export default function Header() {
   const [open, setOpen] = useState(false);
   return (
@@ -70,6 +55,7 @@ export default function Header() {
       <ThemeProvider theme={darkTheme}>
         <AppBar position="static" color="primary">
           <Toolbar>
+            {/* menu icon to open the side drawer */}
             <IconButton
               size="large"
               edge="start"
@@ -89,16 +75,8 @@ export default function Header() {
             >
               Personal Trainer
             </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
 
+            {/* create a side drawer to hold all the naviagtion from all pages */}
             <SideDrawer open={open} setOpen={setOpen} />
           </Toolbar>
         </AppBar>

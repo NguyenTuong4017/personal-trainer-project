@@ -13,7 +13,7 @@ export function CustomerAddingForm() {
     postcode: "",
     city: "",
   });
-
+  //pass the inputted value to the data
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -21,6 +21,7 @@ export function CustomerAddingForm() {
     console.log(data);
   };
 
+  //post the new data to server to create a new customer
   const handleSubmit = (e) => {
     e.preventDefault();
     addCustomerToDatabase(data)

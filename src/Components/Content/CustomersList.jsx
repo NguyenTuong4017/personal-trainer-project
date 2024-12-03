@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { fetchCustomers } from "../../hooks/fetch";
-
+import { getId } from "../../JavaScript-Function/jsFunction";
 import { Button } from "@mui/material";
 import DeleteDialog from "./Dialog/DeleteDialog";
 import EditCustomerDialog from "./Dialog/EditCustomerDialog";
@@ -13,18 +13,14 @@ export default function CustomersList() {
   const [customerId, setCustomerId] = useState();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
-  //extract the id from the href
-  const getId = (url) => {
-    const parts = url.split("/");
-    const id = parts[parts.length - 1];
-    return id;
-  };
 
+  //show the delete warning dialog
   const showDeleteWarning = (id) => {
     setCustomerId(id);
     setOpenDeleteDialog(true);
   };
 
+  //show the form to edit the customer and create a new customer props to pass to the CusomterAddingForm component
   const showEditForm = (id) => {
     const ref = customers.filter(
       (customer) => getId(customer._links.self.href) == id
@@ -34,21 +30,25 @@ export default function CustomersList() {
     setOpenEditDialog(true);
   };
 
+  //close the both edit dialog and delete warning dialog
   const handleClose = () => {
     setOpenEditDialog(false);
     setOpenDeleteDialog(false);
   };
 
+  //fetch the data to retrieve all customers
   const handleFetch = () => {
     fetchCustomers()
       .then((data) => setCustomers(data._embedded.customers))
       .catch((error) => console.error("Fetching error: ", error));
   };
 
+  //fetch the data immediately when the application opened
   useEffect(() => {
     handleFetch();
   }, []);
 
+  //create columns for the data grid table
   const columns = [
     { field: "fullName", headerName: "Customer's name", width: 300 },
     { field: "address", headerName: "Address", width: 300 },
@@ -58,8 +58,10 @@ export default function CustomersList() {
       field: "action",
       headerName: "Action",
       width: 300,
+      //show the delete and edit buttons
       renderCell: (params) => (
         <>
+          {/* edit button */}
           <Button
             variant="contained"
             color="success"
@@ -68,6 +70,8 @@ export default function CustomersList() {
           >
             Edit
           </Button>
+
+          {/* delete button */}
           <Button
             variant="contained"
             color="error"
@@ -81,6 +85,7 @@ export default function CustomersList() {
     },
   ];
 
+  //create a new object to hold fullname, full address of customer. create less columns. create rows for the data grid table
   useEffect(() => {
     const transformedData = customers.map((item) => ({
       id: String(getId(item._links.self.href)),
@@ -94,6 +99,7 @@ export default function CustomersList() {
 
   return (
     <>
+      {/* data grid table */}
       <DataGrid
         columns={columns}
         rows={rows}
@@ -106,13 +112,14 @@ export default function CustomersList() {
           },
         }}
       ></DataGrid>
-
+      {/* delete warning dialog */}
       <DeleteDialog
         handleClose={handleClose}
         handleFetch={handleFetch}
         idToDelete={customerId}
         openDeleteDialog={openDeleteDialog}
       />
+      {/* edit dialog */}
       <EditCustomerDialog
         handleClose={handleClose}
         openEditDialog={openEditDialog}

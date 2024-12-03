@@ -13,6 +13,7 @@ export default function DeleteDialog({
   handleFetch,
   idToDelete,
 }) {
+  //post the customer id to delete
   const handleDelete = (idToDelete) => {
     deleteCustomer(idToDelete)
       .then((response) => {

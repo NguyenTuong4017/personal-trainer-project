@@ -11,16 +11,18 @@ import { editCustomer } from "../../../hooks/post";
 export default function EditCustomerDialog({
   openEditDialog,
   handleClose,
+  //the customer prop get from CustomerList component
   customer,
   customerId,
   handleFetch,
 }) {
   const [data, setData] = useState(customer);
-
+  // set the customer to data for inputting data from <TextField />
   useEffect(() => {
     setData(customer);
   }, [customer]);
 
+  //set the data to post to the server
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -28,6 +30,7 @@ export default function EditCustomerDialog({
     setData({ ...data, [name]: value });
   };
 
+  // post the id and new to the server to edit the customer
   const handleEdit = (id) => {
     console.log(customer);
     console.log(data);
@@ -51,6 +54,7 @@ export default function EditCustomerDialog({
           <DialogContentText>
             You can edit the customer's information here
           </DialogContentText>
+          {/* first name */}
           <TextField
             autoFocus
             required
@@ -62,6 +66,7 @@ export default function EditCustomerDialog({
             fullWidth
             variant="standard"
           />
+          {/* last name */}
           <TextField
             autoFocus
             required
@@ -73,6 +78,7 @@ export default function EditCustomerDialog({
             fullWidth
             variant="standard"
           />
+          {/* streetaddress */}
           <TextField
             autoFocus
             required
@@ -84,6 +90,7 @@ export default function EditCustomerDialog({
             fullWidth
             variant="standard"
           />
+          {/* postcode */}
           <TextField
             autoFocus
             required
@@ -95,6 +102,7 @@ export default function EditCustomerDialog({
             fullWidth
             variant="standard"
           />
+          {/* city */}
           <TextField
             autoFocus
             required
@@ -106,6 +114,7 @@ export default function EditCustomerDialog({
             fullWidth
             variant="standard"
           />
+          {/* email */}
           <TextField
             autoFocus
             required
@@ -117,6 +126,7 @@ export default function EditCustomerDialog({
             fullWidth
             variant="standard"
           />
+          {/* phone */}
           <TextField
             autoFocus
             required
