@@ -5,6 +5,7 @@ import { getId } from "../../JavaScript-Function/jsFunction";
 import { Button } from "@mui/material";
 import DeleteDialog from "./Dialog/DeleteDialog";
 import EditCustomerDialog from "./Dialog/EditCustomerDialog";
+import CustomerCsvExport from "../CSV/CustomerCsvExport";
 
 export default function CustomersList() {
   const [customers, setCustomers] = useState([]);
@@ -112,6 +113,9 @@ export default function CustomersList() {
           },
         }}
       ></DataGrid>
+      {/* Export button */}
+      <CustomerCsvExport data={rows} />
+
       {/* delete warning dialog */}
       <DeleteDialog
         handleClose={handleClose}
