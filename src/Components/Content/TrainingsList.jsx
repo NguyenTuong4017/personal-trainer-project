@@ -3,9 +3,24 @@ import { DataGrid } from "@mui/x-data-grid";
 import { fetchTrainings } from "../../hooks/fetch";
 import dayjs from "dayjs";
 import { Button } from "@mui/material";
+import DeleteDialog from "./Dialog/DeleteDialog";
 export function TrainingsList() {
   const [trainings, setTrainings] = useState([]);
   const [rows, setRows] = useState([]);
+  const [trainingId, setTrainingId] = useState();
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
+  //show the delete warning dialog
+  const showDeleteWarning = (id) => {
+    setTrainingId(id);
+    setOpenDeleteDialog(true);
+  };
+
+  //close the both edit dialog and delete warning dialog
+  const handleClose = () => {
+    setOpenDeleteDialog(false);
+  };
+
   //create columns for the data grid of training table
   const columns = [
     { field: "date", headerName: "Date", width: 300 },
@@ -15,11 +30,16 @@ export function TrainingsList() {
     {
       field: "action",
       headerName: "Action",
-      width: 300,
+      width: 150,
       renderCell: (params) => (
         <>
           {/* delete button */}
-          <Button variant="contained" color="error" sx={{ width: 100 }}>
+          <Button
+            variant="contained"
+            color="error"
+            sx={{ width: 100 }}
+            onClick={() => showDeleteWarning(params.row.id)}
+          >
             Delete
           </Button>
         </>
@@ -28,7 +48,6 @@ export function TrainingsList() {
   ];
 
   //retrieve all tranings from server
-
   const handleFetch = () => {
     fetchTrainings()
       .then((data) => setTrainings(data))
@@ -54,8 +73,27 @@ export function TrainingsList() {
 
   return (
     <>
-      {<DataGrid columns={columns} rows={rows}></DataGrid>}
-      {console.log(rows)}
+      {
+        <DataGrid
+          columns={columns}
+          rows={rows}
+          sx={{
+            "& .MuiDataGrid-cell:focus": {
+              outline: "none", // Suppress cell focus outline
+            },
+            "& .MuiDataGrid-cell:focus-within": {
+              outline: "none", // Suppress focus-within state
+            },
+          }}
+        ></DataGrid>
+      }
+      <DeleteDialog
+        handleClose={handleClose}
+        handleFetch={handleFetch}
+        idToDelete={trainingId}
+        openDeleteDialog={openDeleteDialog}
+        typeOfDeletion="training"
+      />
     </>
   );
 }

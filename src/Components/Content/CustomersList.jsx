@@ -118,6 +118,7 @@ export default function CustomersList() {
         handleFetch={handleFetch}
         idToDelete={customerId}
         openDeleteDialog={openDeleteDialog}
+        typeOfDeletion="customer"
       />
       {/* edit dialog */}
       <EditCustomerDialog

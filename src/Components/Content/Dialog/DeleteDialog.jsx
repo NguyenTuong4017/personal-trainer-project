@@ -7,16 +7,31 @@ import {
 } from "@mui/material";
 import { Button } from "@mui/material";
 import { deleteCustomer } from "../../../hooks/post";
+import { deleteTraining } from "../../../hooks/post";
 export default function DeleteDialog({
   openDeleteDialog,
   handleClose,
   handleFetch,
   idToDelete,
+  typeOfDeletion,
 }) {
-  //post the customer id to delete
+  //post the id to delete
   const handleDelete = (idToDelete) => {
-    deleteCustomer(idToDelete)
-      .then((response) => {
+    //check the type of delete prop
+    if (typeOfDeletion == "customer") {
+      deleteCustomer(idToDelete)
+        .then((response) => {
+          if (response.ok) {
+            handleFetch();
+            handleClose();
+            console.log("Delete success");
+          } else {
+            console.log("Delete failed");
+          }
+        })
+        .catch((error) => console.error(error));
+    } else if (typeOfDeletion == "training") {
+      deleteTraining(idToDelete).then((response) => {
         if (response.ok) {
           handleFetch();
           handleClose();
@@ -24,8 +39,8 @@ export default function DeleteDialog({
         } else {
           console.log("Delete failed");
         }
-      })
-      .catch((error) => console.error(error));
+      });
+    }
   };
   return (
     <>
@@ -33,7 +48,7 @@ export default function DeleteDialog({
         <DialogTitle>Warning!</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure to delete this customer?
+            Are you sure to delete this {`${typeOfDeletion}`}?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
