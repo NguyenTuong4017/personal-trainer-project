@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { fetchTrainings } from "../../hooks/fetch";
 import dayjs from "dayjs";
+import { Button } from "@mui/material";
 export function TrainingsList() {
   const [trainings, setTrainings] = useState([]);
   const [rows, setRows] = useState([]);
@@ -11,6 +12,19 @@ export function TrainingsList() {
     { field: "duration", headerName: "Duration", width: 150 },
     { field: "activity", headerName: "Activity", width: 200 },
     { field: "customer", headerName: "Customer", width: 250 },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 300,
+      renderCell: (params) => (
+        <>
+          {/* delete button */}
+          <Button variant="contained" color="error" sx={{ width: 100 }}>
+            Delete
+          </Button>
+        </>
+      ),
+    },
   ];
 
   //retrieve all tranings from server

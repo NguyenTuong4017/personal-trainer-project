@@ -1,5 +1,4 @@
 const CUSTOMERS_API = import.meta.env.VITE_CUSTOMERS_API
-const TRAININGS_API = import.meta.env.VITE_TRAININGS_API
 const VITE_POST_TRAININGS_API = import.meta.env.VITE_POST_TRAININGS_API
 import { useNavigate } from "react-router-dom"
 //post the data of new customer
@@ -42,4 +41,11 @@ export function addTrainingToDatabase(data) {
         body: JSON.stringify(data)
     });
         
+}
+
+//delete the training with id
+export function deleteTraining(id) {
+    return fetch(VITE_POST_TRAININGS_API+`/${id}` , {
+        method: "DELETE"
+    })
 }
