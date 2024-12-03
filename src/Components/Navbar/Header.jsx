@@ -11,7 +11,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SideDrawer from "./SideDrawer";
-import { Outlet } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

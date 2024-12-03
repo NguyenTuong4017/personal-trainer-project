@@ -1,11 +1,10 @@
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import CustomersList from "../Content/CustomersList";
-import { TrainingsList } from "../Content/TrainingsList";
 
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+
 import PersonIcon from "@mui/icons-material/Person";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function PageList({ setOpen }) {
@@ -36,6 +35,17 @@ export default function PageList({ setOpen }) {
             <FitnessCenterIcon />
           </ListItemIcon>
           <ListItemText primary="Trainings" />
+        </ListItemButton>
+
+        <ListItemButton
+          component={Link}
+          to="/add-customer"
+          onClick={() => setOpen(false)}
+        >
+          <ListItemIcon>
+            <PersonAddIcon />
+          </ListItemIcon>
+          <ListItemText primary="Add Customer" />
         </ListItemButton>
       </List>
     </>
