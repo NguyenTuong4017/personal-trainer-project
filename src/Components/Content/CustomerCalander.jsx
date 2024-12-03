@@ -17,7 +17,7 @@ export default function CustomerCalendar() {
   useEffect(() => {
     handleFetch();
   }, []);
-
+  //create events for calendar
   const events = trainings.map((item) => ({
     id: item.id,
     title: `${item.activity} / ${item.customer.firstname} ${item.customer.lastname}`,
