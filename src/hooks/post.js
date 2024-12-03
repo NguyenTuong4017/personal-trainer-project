@@ -20,3 +20,12 @@ export function deleteCustomer(id) {
         
 }
   
+export function editCustomer(id, data) {
+    return fetch(CUSTOMERS_API+`/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+}
