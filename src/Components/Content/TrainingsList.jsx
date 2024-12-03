@@ -10,6 +10,7 @@ export function TrainingsList() {
   const [rows, setRows] = useState([]);
   const [trainingId, setTrainingId] = useState();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [hide, setHide] = useState(true);
 
   //show the delete warning dialog
   const showDeleteWarning = (id) => {

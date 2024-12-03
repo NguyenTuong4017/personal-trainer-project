@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchCustomers } from "./hooks/fetch";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import Header from "./Components/Navbar/Header";
 import CustomersList from "./Components/Content/CustomersList";
 import { CustomerAddingForm } from "./Components/Add-Form/CustomerAddingForm";
