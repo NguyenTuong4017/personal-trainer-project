@@ -7,7 +7,7 @@ import CustomersList from "./Components/Content/CustomersList";
 import { CustomerAddingForm } from "./Components/Add-Form/CustomerAddingForm";
 import { TrainingsList } from "./Components/Content/TrainingsList";
 import TrainingAddingForm from "./Components/Add-Form/TrainingAddingForm";
-import Calendar from "./Components/Content/Calander";
+import CustomerCalendar from "./Components/Content/CustomerCalander";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
         { path: "trainings", element: <TrainingsList /> },
         { path: "add-customer", element: <CustomerAddingForm /> },
         { path: "add-training", element: <TrainingAddingForm /> },
-        { path: "calendar", element: <Calendar /> },
+        { path: "calendar", element: <CustomerCalendar /> },
         { index: true, element: <CustomersList /> },
       ],
     },

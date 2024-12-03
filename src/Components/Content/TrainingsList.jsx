@@ -4,6 +4,7 @@ import { fetchTrainings } from "../../hooks/fetch";
 import dayjs from "dayjs";
 import { Button } from "@mui/material";
 import DeleteDialog from "./Dialog/DeleteDialog";
+import CustomerCalendar from "./CustomerCalander";
 export function TrainingsList() {
   const [trainings, setTrainings] = useState([]);
   const [rows, setRows] = useState([]);
