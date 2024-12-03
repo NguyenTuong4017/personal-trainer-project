@@ -11,3 +11,12 @@ export function addCustomerToDatabase(data) {
         body: JSON.stringify(data)
     });
 }
+
+
+export function deleteCustomer(id) {
+    return fetch(CUSTOMERS_API+`/${id}`, {
+        method: "DELETE",
+    })
+        
+}
+  
